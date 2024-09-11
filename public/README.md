@@ -1,0 +1,1 @@
+in the public folder would be img assets for profile pictures and backgrounds
