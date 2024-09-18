@@ -1,16 +1,18 @@
 import { sql } from "@vercel/postgres";
 export async function getServerSideTodos() {
-// THIS WORKS TO RETRIEVE WHISKEY DATA!! DON'T SCREW WITH
+    // THIS WORKS TO RETRIEVE WHISKEY DATA!! DON'T SCREW WITH
     let res = await fetch('https://whiskyhunter.net/api/distilleries_info/');
     let data = await res.json()
     return data;
 }
 
 export async function getCustomers() {
-        let res = await sql`SELECT * FROM customers`;
-        let customers =  res.rows
-        return customers;
-    }
+    // THIS WORKS TO RETRIEVE DATA FROM SQL DB
+    let res = await sql`SELECT * FROM customers`;
+    let customers = res.rows
+    return customers;
+}
+
 
 // //BELOW CODE WORKS IN EXAMPLE
 // export async function fetchInvoicesPages(query) {
