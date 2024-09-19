@@ -1,43 +1,42 @@
-import { getServerSideTodos, getCustomers, listMajors } from "../lib/data"
-import { getSheetsData }  from "../lib/readSheet/index"
+import { getAuctionWhiskies, getCustomers, listMajors } from "../lib/data"
 
 
-// let data = await getServerSideTodos();
-// let customers = await getCustomers();
-// let majors = await listMajors() 
+
 
 export default async function Page() {
-    
-    // console.log('*********************')
-    // console.log(data)
-    // console.log(majors)
-    // let res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    // let data = await res.json()
-    const sheetData = await getSheetsData()
-    console.log('sheet data:', sheetData)
 
+    console.log('*********************')
+    //whiskeyhunter api
+    let data = await getAuctionWhiskies();
+    //POSTGRES SQL DATA
+    let customers = await getCustomers();
+    //EXTERNAL JSON PLACEHUNTER API
+    let res = await fetch('https://jsonplaceholder.typicode.com/todos');
+    let todoData = await res.json()
+    
     return (
         <div>
-        {/* <ul>
-            {data.map((todo) => (
-                <li key={todo.name}>
-                    {todo.name}-{todo.country}</li>
-            ))}
-        </ul>
-        <ul>
-            {customers.map((cust) =>(
-                <li key={cust.id}>
-                    {cust.id}-{cust.name}
-                </li>
-            ))}
-        </ul> */}
-        {/* <ul>
-            {majors.map((student) =>(
-                <li key={student.id}>
-                    {cust.id}-{cust.name}
-                </li>
-            ))}
-        </ul> */}
+            <ul>
+                {data.map((whisk) => (
+                    <li key={whisk.name}>
+                        {whisk.name}-{whisk.country}</li>
+                ))}
+            </ul>
+            <ul>
+                {customers.map((cust) => (
+                    <li key={cust.id}>
+                        {cust.id}-{cust.name}
+                    </li>
+                ))}
+            </ul>
+            <ul>
+                {todoData.map((todo) => (
+                    <li key={todo.id}>
+                        {todo.id}-{todo.title}-{todo.userId}
+                    </li>
+                ))}
+            </ul>
+
         </div>
     )
 }
