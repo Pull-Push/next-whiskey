@@ -1,4 +1,4 @@
-import { getAuctionWhiskies, getCustomers, listMajors } from "../lib/data"
+import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos } from "../lib/data"
 
 
 
@@ -11,8 +11,8 @@ export default async function Page() {
     //POSTGRES SQL DATA
     let customers = await getCustomers();
     //EXTERNAL JSON PLACEHUNTER API
-    let res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    let todoData = await res.json()
+    let todoData = await sampleTodos()
+    console.log(todoData)
     
     return (
         <div>

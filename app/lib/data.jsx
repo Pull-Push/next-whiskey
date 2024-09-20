@@ -16,6 +16,13 @@ export async function getCustomers() {
     return customers;
 }
 
+export async function sampleTodos(){
+    //This works to retrieve sample todo data
+    let res = await fetch('https://jsonplaceholder.typicode.com/todos');
+    let todoData = await res.json();
+    return todoData;
+}
+
 
 export const getSheetsData = async () =>{
     const auth = new google.auth.GoogleAuth({
