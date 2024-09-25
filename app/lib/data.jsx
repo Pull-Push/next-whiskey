@@ -59,13 +59,14 @@ export async function getScrubbedSheetData(){
     let cleansedDataSheets = []
     // // console.log('data', sheetData)
     for ( let i = 0; i<sheetData.length; i++ ){
+        //turn rows into object
         cleansedDataSheets.push({sheetName:sheetData[i].range.slice(1,7), colums:sheetData[i].values[1], rows:[]})
-        for( let j = 2; j<sheetData[i].values; j++){
-            console.log('values', sheetData[i].values)
+        for( let j = 2; j<sheetData[i].values.length; j++){
+            cleansedDataSheets[i]['rows'].push(sheetData[i].values[j])
         }
-
     }
-    console.log(cleansedDataSheets)
+    return cleansedDataSheets
+    
 }
 
 // //BELOW CODE WORKS IN EXAMPLE

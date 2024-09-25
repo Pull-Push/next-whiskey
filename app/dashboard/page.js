@@ -3,7 +3,6 @@ import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos, getScrubbedS
 
 
 export default async function Page() {
-    getScrubbedSheetData()
     console.log('*********************')
     //whiskeyhunter api
     let data = await getAuctionWhiskies();
