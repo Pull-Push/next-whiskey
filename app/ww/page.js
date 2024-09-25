@@ -1,7 +1,6 @@
 // import { getSheetsData }  from "../lib/data"
 import { Table } from "../ui/ww/table"
 
-
 export default async function Page() {
 
 // const sheetData = await getSheetsData()

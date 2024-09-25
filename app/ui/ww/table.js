@@ -6,7 +6,7 @@ const sheetData = await getSheetsData()
 
 const ssd = await getScrubbedSheetData()
 const indy = [ssd[0]]
-
+console.log(ssd)
 //need to change sheetData index with year for toprow and vals!!!
 // MIGHT NEED TO CHANGE FOR SEARCH AND PAGINATION - NAME CHANGE NEGATES THIS
 // let topRow = sheetData[0].values[1]
@@ -26,7 +26,7 @@ export function Table() {
                             <table className="min-w-full divide-y divide-gray-300">
                                 <thead className="bg-gray-50">
                                     <tr>
-                                        {indy[0].colums.map((col) => (
+                                        {indy[0].columns.map((col) => (
                                             <th key={col} scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                                 {col}
                                             </th>

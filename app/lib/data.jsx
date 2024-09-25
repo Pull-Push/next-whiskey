@@ -60,7 +60,7 @@ export async function getScrubbedSheetData(){
     // // console.log('data', sheetData)
     for ( let i = 0; i<sheetData.length; i++ ){
         //turn rows into object
-        cleansedDataSheets.push({sheetName:sheetData[i].range.slice(1,7), colums:sheetData[i].values[1], rows:[]})
+        cleansedDataSheets.push({id:i, sheetName:sheetData[i].range.slice(1,7), columns:sheetData[i].values[1], rows:[]})
         for( let j = 2; j<sheetData[i].values.length; j++){
             cleansedDataSheets[i]['rows'].push(sheetData[i].values[j])
         }
@@ -68,6 +68,16 @@ export async function getScrubbedSheetData(){
     return cleansedDataSheets
     
 }
+
+export async function getColumnData(){
+    const sheetData = await getSheetsData()
+    const COLUMNS = [];
+    console.log(sheetData)
+    // for(let i=0; i<sheetData.length; i++){
+    //     console.log(sheetData[i].values[1])
+    // }
+}
+
 
 // //BELOW CODE WORKS IN EXAMPLE
 // export async function fetchInvoicesPages(query) {

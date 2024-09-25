@@ -1,4 +1,4 @@
-import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos, getScrubbedSheetData } from "../lib/data"
+import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos, getColumnData } from "../lib/data"
 
 
 
@@ -11,6 +11,8 @@ export default async function Page() {
     //EXTERNAL JSON PLACEHUNTER API
     let todoData = await sampleTodos()
     // console.log(todoData)
+    let colData = await getColumnData()
+    // console.log(colData)
     return (
         <div>
             <ul>
