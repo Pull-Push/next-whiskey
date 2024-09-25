@@ -1,10 +1,9 @@
-import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos } from "../lib/data"
-
+import { getAuctionWhiskies, getCustomers, listMajors, sampleTodos, getScrubbedSheetData } from "../lib/data"
 
 
 
 export default async function Page() {
-
+    getScrubbedSheetData()
     console.log('*********************')
     //whiskeyhunter api
     let data = await getAuctionWhiskies();
@@ -12,8 +11,7 @@ export default async function Page() {
     let customers = await getCustomers();
     //EXTERNAL JSON PLACEHUNTER API
     let todoData = await sampleTodos()
-    console.log(todoData)
-    
+    // console.log(todoData)
     return (
         <div>
             <ul>

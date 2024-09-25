@@ -40,8 +40,6 @@ export const getSheetsData = async () =>{
     const range = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9']
     // const range = ['Year 1']
 
-
-
     try {
         const response = await sheets.spreadsheets.values.batchGet({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
@@ -53,6 +51,21 @@ export const getSheetsData = async () =>{
         console.error('Error fetching sheets data:', error)
         return []
     }
+}
+
+export async function getScrubbedSheetData(){
+    const sheetData = await getSheetsData()
+    // console.log(sheetData[0].values[2])
+    let cleansedDataSheets = []
+    // // console.log('data', sheetData)
+    for ( let i = 0; i<sheetData.length; i++ ){
+        cleansedDataSheets.push({sheetName:sheetData[i].range.slice(1,7), colums:sheetData[i].values[1], rows:[]})
+        for( let j = 2; j<sheetData[i].values; j++){
+            console.log('values', sheetData[i].values)
+        }
+
+    }
+    console.log(cleansedDataSheets)
 }
 
 // //BELOW CODE WORKS IN EXAMPLE

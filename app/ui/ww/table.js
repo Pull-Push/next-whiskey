@@ -1,35 +1,22 @@
 import { getSheetsData } from "../../lib/data"
+import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid'
 
 
 const sheetData = await getSheetsData()
 
 
 //need to change sheetData index with year for toprow and vals!!!
+// MIGHT NEED TO CHANGE FOR SEARCH AND PAGINATION - NAME CHANGE NEGATES THIS
 let topRow = sheetData[0].values[1]
 let vals = []
-for( let i=2; i<sheetData[0].values.length-2; i++){
+for (let i = 2; i < sheetData[0].values.length - 2; i++) {
     vals.push(sheetData[0].values[i])
 }
+console.log(vals)
 
 export function Table() {
     return (
         <div className="px-4 sm:px-6 lg:px-8">
-            <div className="sm:flex sm:items-center">
-                <div className="sm:flex-auto">
-                    <h1 className="text-base font-semibold leading-6 text-gray-900">Users</h1>
-                    <p className="mt-2 text-sm text-gray-700">
-                        A list of all the users in your account including their name, title, email and role.
-                    </p>
-                </div>
-                <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                        type="button"
-                        className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        Add user
-                    </button>
-                </div>
-            </div>
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle">
@@ -39,7 +26,8 @@ export function Table() {
                                     {topRow.map((sheet) =>
                                         <th
                                             scope="col"
-                                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
+                                            className="py-3.5 px-3 text-sm text-center font-semibold text-white-900 sm:pl-6 lg:pl-8"
+                                            key={sheet}
                                         >
                                             {sheet}
                                         </th>
@@ -49,25 +37,90 @@ export function Table() {
                             <tbody className="divide-y divide-gray-200 bg-white">
                                 {vals.map((week) => (
                                     <tr key={week[0]}>
-                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                        <td className="whitespace-nowrap py-4 px-3 text-sm text-center font-medium text-gray-900 sm:pl-6 lg:pl-8">
                                             {week[0]}
                                         </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[1]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[2]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[3]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[4]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[5]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[6]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[7]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[8]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[9]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[10]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[11]}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{week[12]}</td>
+                                        {/* find better way to iterate through */}
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[1]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[2]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[3]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[4]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[5]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[6]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[7]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[8]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[9]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[10]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[11]}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-gray-500">{week[12]}</td>
                                     </tr>
                                 ))}
                             </tbody>
+                            {/* nav starts below */}
                         </table>
+                            <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
+                                <div className="-mt-px flex w-0 flex-1">
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        <ArrowLongLeftIcon aria-hidden="true" className="mr-3 h-5 w-5 text-gray-400" />
+                                        Previous
+                                    </a>
+                                </div>
+                                <div className="hidden md:-mt-px md:flex">
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        1
+                                    </a>
+                                    {/* Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" */}
+                                    <a
+                                        href="#"
+                                        aria-current="page"
+                                        className="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
+                                    >
+                                        2
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        3
+                                    </a>
+                                    <span className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500">
+                                        ...
+                                    </span>
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        8
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        9
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        10
+                                    </a>
+                                </div>
+                                <div className="-mt-px flex w-0 flex-1 justify-end">
+                                    <a
+                                        href="#"
+                                        className="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    >
+                                        Next
+                                        <ArrowLongRightIcon aria-hidden="true" className="ml-3 h-5 w-5 text-gray-400" />
+                                    </a>
+                                </div>
+                            </nav>
                     </div>
                 </div>
             </div>
