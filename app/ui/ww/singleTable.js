@@ -1,4 +1,4 @@
-import { getSheetsData, getScrubbedSheetData } from "../../lib/data"
+import { getSheetsData, getScrubbedSheetData, getCondensedSheet } from "../../lib/data"
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid'
 
 
@@ -6,17 +6,11 @@ const sheetData = await getSheetsData()
 
 const ssd = await getScrubbedSheetData()
 const indy = [ssd[0]]
-console.log(ssd)
+// console.log(ssd)
 //need to change sheetData index with year for toprow and vals!!!
 // MIGHT NEED TO CHANGE FOR SEARCH AND PAGINATION - NAME CHANGE NEGATES THIS
-// let topRow = sheetData[0].values[1]
-// let vals = []
-// for (let i = 2; i < sheetData[0].values.length - 2; i++) {
-//     vals.push(sheetData[0].values[i])
-// }
-// console.log(vals)
 
-export function Table() {
+export function SingleTable() {
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="mt-8 flow-root">

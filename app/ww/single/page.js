@@ -1,5 +1,5 @@
 // import { getSheetsData }  from "../lib/data"
-import { Table } from "../ui/ww/table"
+import { SingleTable } from "../../ui/ww/singleTable"
 
 export default async function Page() {
 
@@ -15,7 +15,7 @@ return(
                     {data.range.slice(1,7)}-Week{data.values[2][0]}-{data.values[2][1]}</li>
             ))}
         </ul> */}
-        <Table />
+        <SingleTable />
     </div>
 )
 

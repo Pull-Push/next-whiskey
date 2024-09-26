@@ -55,9 +55,7 @@ export const getSheetsData = async () =>{
 
 export async function getScrubbedSheetData(){
     const sheetData = await getSheetsData()
-    // console.log(sheetData[0].values[2])
     let cleansedDataSheets = []
-    // // console.log('data', sheetData)
     for ( let i = 0; i<sheetData.length; i++ ){
         //turn rows into object
         cleansedDataSheets.push({id:i, sheetName:sheetData[i].range.slice(1,7), columns:sheetData[i].values[1], rows:[]})
@@ -66,18 +64,30 @@ export async function getScrubbedSheetData(){
         }
     }
     return cleansedDataSheets
-    
 }
-
-export async function getColumnData(){
+export async function getCondensedSheet(){
     const sheetData = await getSheetsData()
-    const COLUMNS = [];
-    console.log(sheetData)
-    // for(let i=0; i<sheetData.length; i++){
-    //     console.log(sheetData[i].values[1])
-    // }
+    let condensedDataSheet = [
+        {
+            id:100,
+            sheetName: 'Index',
+            columns: ["#", "Name", "Date", "Seat 1", "Seat 2", "Seat 3", "Seat 4", "Seat 5", "Seat 6", "", ,"Average", "Style", "Price"],
+            rows:[]
+        }
+    ]
+    for(let i=0; i<sheetData.length;i++){
+        // console.log(sheetData[i].values[2])
+        for(let j=2; sheetData[i].values[j]; j++){
+            if(!sheetData[i].values[j][1]){
+                continue
+            }else{
+                // console.log(sheetData[i].values[j])
+                condensedDataSheet[0].rows.push(sheetData[i].values[j])
+            }
+        }
+    }
+    return condensedDataSheet
 }
-
 
 // //BELOW CODE WORKS IN EXAMPLE
 // export async function fetchInvoicesPages(query) {
